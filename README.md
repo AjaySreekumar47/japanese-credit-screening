@@ -8,8 +8,7 @@ A comprehensive credit risk assessment system implementing statistical and machi
 - Identified key risk factors for credit approvals
 - Created deployment-ready solution with real-time prediction capabilities
 
-<img width="588" alt="image" src="https://github.com/user-attachments/assets/f2d8569a-4327-4f27-86e7-315e063f9ca7" />
-
+<img width="593" alt="image" src="https://github.com/user-attachments/assets/e67e9d02-5466-4fdc-ab8d-02edf7fd0fab" />
 
 ## Dataset
 This project uses the Japanese Credit Screening dataset from the UCI Machine Learning Repository.
