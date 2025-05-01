@@ -1,0 +1,1 @@
+Sano, C. (1992). Japanese Credit Screening [Dataset]. UCI Machine Learning Repository. https://doi.org/10.24432/C5259N.

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result - Japanese Credit Screening</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+            background-color: #f8f9fa;
+        }
+        .header {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .result-container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .approved {
+            color: #198754;
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        .denied {
+            color: #dc3545;
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        .probability {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer {
+            margin-top: 2rem;
+            text-align: center;
+            color: #6c757d;
+        }
+        .progress {
+            height: 2rem;
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="display-4">Credit Approval Result</h1>
+        </div>
+        
+        <div class="result-container">
+            {% if result.approved %}
+            <div class="approved">
+                <i class="bi bi-check-circle-fill"></i> APPROVED
+            </div>
+            {% else %}
+            <div class="denied">
+                <i class="bi bi-x-circle-fill"></i> DENIED
+            </div>
+            {% endif %}
+            
+            {% if result.approval_probability is not none %}
+            <div class="probability">
+                Approval Probability: {{ (result.approval_probability * 100) | round(2) }}%
+            </div>
+            
+            <div class="progress">
+                <div class="progress-bar {% if result.approved %}bg-success{% else %}bg-danger{% endif %}" 
+                     role="progressbar" 
+                     style="width: {{ (result.approval_probability * 100) | round(2) }}%" 
+                     aria-valuenow="{{ (result.approval_probability * 100) | round(2) }}" 
+                     aria-valuemin="0" 
+                     aria-valuemax="100">
+                    {{ (result.approval_probability * 100) | round(2) }}%
+                </div>
+            </div>
+            {% endif %}
+            
+            <div class="timestamp">
+                Prediction made at: {{ result.timestamp }}
+            </div>
+            
+            <div class="mt-4">
+                <a href="/" class="btn btn-primary">Make Another Prediction</a>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Japanese Credit Screening Model</p>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+</body>
+</html>
